@@ -4,6 +4,10 @@ An Excel workbook that simulates **Continued Process Verification (CPV)** for mo
 
 > **Disclaimer:** All batch data and specification limits are fictional and were created for training and portfolio purposes. They are not validated manufacturing specifications.
 
+## Dashboard
+(Captura de pantalla 2026-09-30 185437)
+
+
 ---
 
 ## Project Objective
