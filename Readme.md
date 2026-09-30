@@ -38,4 +38,4 @@ The data covers 15 batches across 3 products (5 batches each), 2 production line
 
 ## Author
 
-**Angel HK**, biotechnology / bioprocess engineering student
+**Angel HK**
