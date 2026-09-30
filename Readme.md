@@ -18,43 +18,6 @@ In biopharmaceutical manufacturing, every batch must be checked against predefin
 
 ---
 
-## Tools & Skills
-
-- **Microsoft Excel**
-- Excel Tables and structured references (`tblBatchData[...]`)
-- `VLOOKUP`, `IF`, `AND`, `COUNTIF`, `COUNTIFS`, `COUNTA`, `AVERAGE`
-- Absolute vs. relative references (`$`)
-- Doughnut, column and bar charts linked to live KPI cells
-- Basic data validation logic and result verification
-
----
-
-## Workbook Structure
-
-| Sheet | Purpose |
-|---|---|
-| `SPECS_LIMITS` | Specification limits (LSL/USL) for each product: mAb_X, mAb_Y, mAb_Z |
-| `BATCH_DATA` | 15 batch records with process data, quality results and automatic PASS/FAIL status (table `tblBatchData`) |
-| `KPI_SUMMARY` | KPIs: pass rate, failures by parameter, product and line summaries, average results |
-| `DASHBOARD` | KPI cards and four charts summarizing batch performance |
-
----
-
-## Parameters & Units
-
-| Parameter | Type | Unit | Limit type |
-|---|---|---|---|
-| Temperature | Process condition | °C | LSL and USL |
-| pH | Process condition | Unitless | LSL and USL |
-| DO (Dissolved Oxygen) | Process condition | % air saturation | LSL and USL |
-| Yield | Quality attribute | % | LSL only |
-| Purity | Quality attribute | % | LSL only |
-| Potency | Quality attribute | % relative activity (vs. reference standard) | LSL only |
-
-Example limits for **mAb_X**: Temperature 36.0–38.0 °C, pH 6.90–7.30, DO 30–60 %, Yield ≥ 83.0 %, Purity ≥ 95.0 %, Potency ≥ 90.0 %.
-
----
-
 ## Batch Data
 
 Each batch record contains:
@@ -62,39 +25,6 @@ Each batch record contains:
 `Batch ID` · `Product` · `Production Line` · `Start Date` · `End Date` · `Shift` · `Temperature (°C)` · `pH` · `DO (% air saturation)` · `Yield (%)` · `Purity (%)` · `Potency (% relative activity)`
 
 The data covers 15 batches across 3 products (5 batches each), 2 production lines (Line_A, Line_B) and 2 shifts (Day, Night).
-
----
-
-## Key Formulas
-
-**Two-sided parameter check (e.g. Temperature).** This looks up the product's LSL and USL and checks that the value falls between them:
-
-```excel
-=IF(AND(G3>=VLOOKUP($B3;SPECS_LIMITS!$A$2:$J$4;2;FALSE);G3<=VLOOKUP($B3;SPECS_LIMITS!$A$2:$J$4;3;FALSE));"PASS";"FAIL")
-```
-
-**One-sided parameter check (e.g. Yield).** Only a minimum is required:
-
-```excel
-=IF(J3>=VLOOKUP($B3;SPECS_LIMITS!$A$2:$J$4;8;FALSE);"PASS";"FAIL")
-```
-
-**Overall batch status.** A batch fails if any single parameter fails:
-
-```excel
-=IF(COUNTIF(M3:R3;"FAIL")>0;"FAIL";"PASS")
-```
-
-**KPIs using structured references:**
-
-| KPI | Formula |
-|---|---|
-| Total batches | `=COUNTA(tblBatchData[Batch ID])` |
-| Passing batches | `=COUNTIF(tblBatchData[Overall Status];"PASS")` |
-| Passing per product | `=COUNTIFS(tblBatchData[Product];D4;tblBatchData[Overall Status];"PASS")` |
-| Average yield | `=AVERAGE(tblBatchData[Yield])` |
-
-> Formulas use `;` as the separator because of European regional settings. In English-locale Excel, use `,` instead.
 
 ---
 
