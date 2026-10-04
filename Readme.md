@@ -1,21 +1,20 @@
 # Bioprocess Data Analysis in Excel
 
-An Excel workbook that simulates **Continued Process Verification (CPV)** for monoclonal antibody (mAb) production batches. Each batch is checked automatically against product-specific specification limits. The results are then summarized as KPIs and shown on a dashboard.
+An Excel workbook that simulates **Continued Process Verification (CPV)** for fermentation batches. Each batch is checked automatically against specification limits. The results are then summarized as KPIs and shown on a dashboard.
 
-> **Disclaimer:** All batch data and specification limits are fictional and were created for training and portfolio purposes. They are not validated manufacturing specifications.
+> **Disclaimer:** All batch data and specification limits are fictional. They are not validated manufacturing specifications.
 
 ## Dashboard
 ![Dashboard](Bioprocess-Data-Analysis-in-Excel/dashboard.png)
-
 
 ---
 
 ## Project Objective
 
-In biopharmaceutical manufacturing, every batch must be checked against predefined limits for process conditions and quality attributes. The aim of this project was to build a simple, formula-driven tool that:
+In biopharmaceutical manufacturing, every batch must be checked for process conditions and quality attributes. The aim of this project was to build a simple, formula-driven tool that:
 
 - Stores batch records in a structured table
-- Flags each parameter as **PASS** or **FAIL** against its specification
+- Classify each parameter as **PASS** or **FAIL** against its specification
 - Gives every batch an **overall release status**
 - Calculates KPIs by product, production line and parameter
 - Shows batch performance on a dashboard that updates automatically
